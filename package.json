@@ -1,5 +1,5 @@
 {
-  "name": "express-demo",
+  "name": "express-bot-trader",
   "version": "1.0.0",
   "description": "Demo app to test APIs",
   "main": "index.js",
