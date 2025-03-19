@@ -4,14 +4,10 @@ var sqlite = require('sqlite3');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = 4080;
+const port = process.env.PORT || 4080;
 const path = require('path');
 const fs = require('fs');
 
-app.get('/', (req, res) => {
-  res.send('¡Hola!');
-  console.log('Hola!');
-});
 
 app.get('/ok', (req, res) => {
     const texto = '¡Hola, mundo! 3';
@@ -55,7 +51,14 @@ app.use('/tokens', tokenRoute);
 
 // index path
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+  res.json({ 
+    message: 'Express Bot Trader API',
+    endpoints: {
+      bots: '/bots',
+      tokens: '/tokens',
+      test: '/ok'
+    }
+  });
 });
 
 const server = http.createServer(app);
